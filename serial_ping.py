@@ -1,24 +1,28 @@
-import os, re
+import os
+import re
 import time
 
 start = time.time()
 received_packages = re.compile(r"(\d) received")
-status = ("no response","alive but losses","alive")
+status = ("no response", "alive but losses", "alive")
+sfx = ["8.8.8.8", "8.8.4.4", "68.180.230.248", "41.79.93.185", "52.164.213.17"]
 
-for suffix in range(1,5):
-    ip = "192.168.43."+str(suffix)
-    ping_out = os.popen("ping -q -c2 "+ip,"r")
-    print( "... pinging ",ip)
+for suffix in sfx:
+    #ip = "192.168.43." + str(suffix)
+    ip = suffix
+    ping_out = os.popen("ping -q -c2 " + ip, "r")
+    print("... pinging ", ip)
 
     while True:
         line = ping_out.readline()
-        if not line: break
+        if not line:
+            break
         n_received = received_packages.findall(line)
         if n_received:
-            print (ip + ": " + status[int(n_received[0])] )
+            print(ip + ": " + status[int(n_received[0])])
 
 end = time.time()
-print(end-start)
+print(end - start)
 
 
 """
