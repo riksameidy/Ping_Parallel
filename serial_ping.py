@@ -5,7 +5,7 @@ import time
 start = time.time()
 received_packages = re.compile(r"(\d) received")
 status = ("no response", "alive but losses", "alive")
-sfx = ["8.8.8.8", "8.8.4.4", "68.180.230.248", "41.79.93.185", "52.164.213.17"]
+sfx = ["8.8.8.8", "8.8.4.4", "68.180.230.248", "41.79.93.185"]
 
 for suffix in sfx:
     #ip = "192.168.43." + str(suffix)
